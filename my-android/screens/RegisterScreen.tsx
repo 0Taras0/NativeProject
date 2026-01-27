@@ -2,8 +2,8 @@ import { useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import AvatarPicker from "@/app/components/pickers/AvatarPicker";
-import IconInput from "@/app/components/inputs/IconInput";
+import AvatarPicker from "@/components/pickers/AvatarPicker";
+import IconInput from "@/components/inputs/IconInput";
 import { useColorScheme } from "nativewind";
 import {Link} from "expo-router";
 
@@ -105,7 +105,7 @@ export default function RegisterScreen() {
                     <Text className="text-gray-500 dark:text-gray-400 text-base">
                         Вже маєте акаунт?{" "}
                     </Text>
-                    <Link href="/screens/LoginScreen" asChild>
+                    <Link href="/login" asChild>
                         <Text className="text-black dark:text-white font-bold text-base">
                             Увійти
                         </Text>

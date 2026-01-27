@@ -33,7 +33,7 @@ export default function Index() {
                 </Text>
 
                 <Pressable
-                    onPress={() => router.push("/screens/RegisterScreen")}
+                    onPress={() => router.push("/register")}
                     className="bg-black dark:bg-white py-4 rounded-2xl mb-4 shadow-sm active:opacity-80"
                 >
                     <Text className="text-white dark:text-black text-center font-bold text-base">
@@ -42,7 +42,7 @@ export default function Index() {
                 </Pressable>
 
                 <Pressable
-                    onPress={() => router.push("/screens/LoginScreen")}
+                    onPress={() => router.push("/login")}
                     className="border border-gray-300 dark:border-slate-700 py-4 rounded-2xl active:bg-gray-50 dark:active:bg-slate-900"
                 >
                     <Text className="text-center font-bold text-base text-black dark:text-white">

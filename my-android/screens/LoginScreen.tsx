@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import IconInput from "@/app/components/inputs/IconInput";
+import IconInput from "@/components/inputs/IconInput";
 import { Link } from "expo-router";
 import { useColorScheme } from "nativewind";
 
@@ -110,7 +110,7 @@ export default function LoginScreen() {
                     <Text className="text-gray-500 dark:text-gray-400 text-base">
                         Немає акаунту?{" "}
                     </Text>
-                    <Link href="/screens/RegisterScreen" asChild>
+                    <Link href="/register" asChild>
                         <Pressable>
                             <Text className="text-black dark:text-white font-bold text-base">
                                 Створити
