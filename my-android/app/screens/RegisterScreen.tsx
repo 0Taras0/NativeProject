@@ -21,6 +21,10 @@ export default function RegisterScreen() {
         console.log("Register: ", image, email, password);
     };
 
+    const handleGoogleLogin = async () => {
+        console.log("Google login pressed");
+    };
+
     return (
         <KeyboardAwareScrollView
             className="bg-white dark:bg-slate-950"
@@ -78,6 +82,22 @@ export default function RegisterScreen() {
                 >
                     <Text className="text-white dark:text-black text-center font-bold text-lg">
                         Зареєструватися
+                    </Text>
+                </Pressable>
+
+                <View className="flex-row items-center my-8">
+                    <View className="flex-1 h-[0.5px] bg-gray-200 dark:bg-slate-800" />
+                    <Text className="mx-4 text-gray-400 font-medium text-sm">Або</Text>
+                    <View className="flex-1 h-[0.5px] bg-gray-200 dark:bg-slate-800" />
+                </View>
+
+                <Pressable
+                    onPress={handleGoogleLogin}
+                    className="flex-row items-center justify-center bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 py-4 rounded-xl shadow-sm active:bg-gray-50 dark:active:bg-slate-800"
+                >
+                    <Ionicons name="logo-google" size={20} color="#DB4437" />
+                    <Text className="text-gray-700 dark:text-gray-200 font-bold text-lg ml-3">
+                        Увійти через Google
                     </Text>
                 </Pressable>
 
