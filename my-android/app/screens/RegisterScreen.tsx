@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import AvatarPicker from "@/app/components/pickers/AvatarPicker";
 import IconInput from "@/app/components/inputs/IconInput";
 import { useColorScheme } from "nativewind";
+import {Link} from "expo-router";
 
 export default function RegisterScreen() {
     const { colorScheme } = useColorScheme();
@@ -84,11 +85,11 @@ export default function RegisterScreen() {
                     <Text className="text-gray-500 dark:text-gray-400 text-base">
                         Вже маєте акаунт?{" "}
                     </Text>
-                    <Pressable>
+                    <Link href="/screens/LoginScreen" asChild>
                         <Text className="text-black dark:text-white font-bold text-base">
                             Увійти
                         </Text>
-                    </Pressable>
+                    </Link>
                 </View>
             </View>
         </KeyboardAwareScrollView>
