@@ -1,15 +1,24 @@
 import { Pressable, Text, View } from "react-native";
-import { useRouter } from "expo-router";
+import { Link, Redirect } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useColorScheme } from "nativewind";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 export default function Index() {
-    const router = useRouter();
     const { colorScheme, toggleColorScheme } = useColorScheme();
     const isDark = colorScheme === "dark";
 
+    const { user, isLoaded } = useSelector((state: RootState) => state.auth);
+
+    if (!isLoaded) return null;
+
+    if (user) {
+        return <Redirect href="/main" />;
+    }
+
     return (
-        <>
+        <View className="flex-1 bg-white dark:bg-slate-950">
             <View className="flex-row justify-end px-6 pt-8">
                 <Pressable
                     onPress={toggleColorScheme}
@@ -24,32 +33,34 @@ export default function Index() {
             </View>
 
             <View className="flex-1 justify-center px-6">
-                <Text className="text-3xl font-bold text-center mb-4 text-black dark:text-white">
+                <Text className="text-4xl font-black text-center mb-4 text-black dark:text-white tracking-tighter">
                     Ласкаво просимо
                 </Text>
 
-                <Text className="text-gray-500 dark:text-gray-400 text-center mb-10 text-base">
+                <Text className="text-gray-500 dark:text-gray-400 text-center mb-10 text-lg font-medium">
                     Створіть обліковий запис, щоб продовжити
                 </Text>
 
-                <Pressable
-                    onPress={() => router.push("/register")}
-                    className="bg-black dark:bg-white py-4 rounded-2xl mb-4 shadow-sm active:opacity-80"
-                >
-                    <Text className="text-white dark:text-black text-center font-bold text-base">
-                        Реєстрація
-                    </Text>
-                </Pressable>
+                <Link href="/register" asChild>
+                    <Pressable
+                        className="bg-black dark:bg-white py-4 rounded-2xl mb-4 shadow-md active:opacity-90 active:scale-[0.98]"
+                    >
+                        <Text className="text-white dark:text-black text-center font-bold text-lg">
+                            Реєстрація
+                        </Text>
+                    </Pressable>
+                </Link>
 
-                <Pressable
-                    onPress={() => router.push("/login")}
-                    className="border border-gray-300 dark:border-slate-700 py-4 rounded-2xl active:bg-gray-50 dark:active:bg-slate-900"
-                >
-                    <Text className="text-center font-bold text-base text-black dark:text-white">
-                        Вхід
-                    </Text>
-                </Pressable>
+                <Link href="/login" asChild>
+                    <Pressable
+                        className="border border-gray-300 dark:border-slate-700 py-4 rounded-2xl active:bg-gray-50 dark:active:bg-slate-900 active:scale-[0.98]"
+                    >
+                        <Text className="text-center font-bold text-lg text-black dark:text-white">
+                            Вхід
+                        </Text>
+                    </Pressable>
+                </Link>
             </View>
-        </>
+        </View>
     );
 }
