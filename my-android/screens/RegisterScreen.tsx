@@ -79,7 +79,7 @@ export default function RegisterScreen() {
             const match = /\.(\w+)$/.exec(filename);
             const type = match ? `image/${match[1]}` : `image/jpeg`;
 
-            (registerData as any).imageFile = {
+            registerData.imageFile = {
                 uri: Platform.OS === 'android' ? imageUri : imageUri.replace('file://', ''),
                 name: filename,
                 type: type,
