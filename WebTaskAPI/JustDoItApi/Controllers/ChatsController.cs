@@ -23,4 +23,18 @@ public class ChatsController(IChatService chatService) : ControllerBase
         var types = await chatService.GetAllTypes();
         return Ok(types);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetUserChats()
+    {
+        var chats = await chatService.GetUserChatsAsync();
+        return Ok(chats);
+    }
+
+    [HttpGet("{chatId:long}/messages")]
+    public async Task<IActionResult> GetChatMessages([FromRoute] long chatId)
+    {
+        var messages = await chatService.GetChatMessagesAsync(chatId);
+        return Ok(messages);
+    }
 }

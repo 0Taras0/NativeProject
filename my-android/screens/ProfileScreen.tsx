@@ -6,8 +6,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { RootState } from '@/store';
 import { logout } from '@/store/authSlice';
-import { BASE_URL } from "@/constants/Urls";
 import { ActionModal } from '@/components/modals/ActionModal';
+import {APP_URLS} from "@/constants/Urls";
 
 export default function ProfileScreen() {
     const router = useRouter();
@@ -32,7 +32,7 @@ export default function ProfileScreen() {
             >
                 <View className="bg-white dark:bg-slate-900 p-6 items-center border-b border-gray-200 dark:border-slate-800 mb-4">
                     <Image
-                        source={{ uri: `${BASE_URL}/images/400_${user.image}` }}
+                        source={{ uri: `${APP_URLS.IMAGES_400_URL}${user.image}` }}
                         className="w-24 h-24 rounded-full mb-3 bg-gray-200 border-2 border-white dark:border-slate-700"
                     />
                     <Text className="text-2xl font-bold text-black dark:text-white text-center">
