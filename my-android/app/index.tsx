@@ -14,7 +14,7 @@ export default function Index() {
     if (!isLoaded) return null;
 
     if (user) {
-        return <Redirect href="/main" />;
+        return <Redirect href="/(tabs)/chats" />;
     }
 
     return (

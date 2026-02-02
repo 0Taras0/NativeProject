@@ -7,7 +7,7 @@ import {IChatMessage} from "@/types/сhat/IChatMessage";
 export const chatService = createApi({
     reducerPath: 'api/chat',
     baseQuery: createBaseQuery('Chats'),
-    tagTypes: ['Chats', 'Messages'], // Додали тег Messages
+    tagTypes: ['Chats', 'Messages'],
     endpoints: (builder) => ({
         getMyChats: builder.query<IChatItem[], void>({
             query: () => ({ url: '', method: 'GET' }),
@@ -19,13 +19,11 @@ export const chatService = createApi({
             invalidatesTags: ['Chats']
         }),
 
-        // 👇 Новий метод для отримання повідомлень
         getChatMessages: builder.query<IChatMessage[], number>({
             query: (chatId) => ({
                 url: `${chatId}/messages`,
                 method: 'GET',
             }),
-            // Важливо: ми не хочемо кешувати це назавжди, щоб при вході бачити свіжі дані
             keepUnusedDataFor: 0,
         })
     })
@@ -34,5 +32,5 @@ export const chatService = createApi({
 export const {
     useGetMyChatsQuery,
     useCreateChatMutation,
-    useGetChatMessagesQuery // 👇 Експортуємо хук
+    useGetChatMessagesQuery
 } = chatService;

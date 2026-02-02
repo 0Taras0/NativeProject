@@ -94,6 +94,9 @@ public class ChatService(
         context.ChatMessages.Add(message);
         await context.SaveChangesAsync();
 
-        return mapper.Map<ChatMessageModel>(message);
+        return mapper.Map<ChatMessageModel>(message, opt =>
+        {
+            opt.Items["CurrentUserId"] = userId;
+        });
     }
 }

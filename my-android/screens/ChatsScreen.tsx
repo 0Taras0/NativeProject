@@ -1,33 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, RefreshControl, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from 'expo-router';
 import { APP_URLS } from "@/constants/Urls";
-import ChatDetailScreen from "@/screens/ChatDetailScreen";
 import { useGetMyChatsQuery } from "@/services/chatService";
-import {IChatItem} from "@/types/сhat/IChatItem";
+import { IChatItem } from "@/types/сhat/IChatItem";
 
 export default function ChatsScreen() {
-    // 1. Отримуємо дані з API
-    const { data: chats = [], isLoading, error, refetch } = useGetMyChatsQuery();
-    console.log(chats);
+    const router = useRouter();
+    const { data: chats = [], isLoading, refetch } = useGetMyChatsQuery();
 
-    // Стан для навігації
-    const [selectedChat, setSelectedChat] = useState<{id: number, name: string} | null>(null);
-
-    // Якщо чат обрано - рендеримо екран переписки
-    if (selectedChat) {
-        return (
-            <ChatDetailScreen
-                chatId={selectedChat.id}
-                chatName={selectedChat.name}
-                onBack={() => setSelectedChat(null)}
-            />
-        );
-    }
-
-    // Рендер окремого елемента списку
     const renderChatItem = ({ item }: { item: IChatItem }) => {
-        // Фоллбек значення, бо бекенд може поки не повертати ці дані
         const chatName = item.name || "Без назви";
         const lastMsg = item.lastMessage || "Немає повідомлень";
         const timeDisplay = item.time || "";
@@ -36,7 +19,12 @@ export default function ChatsScreen() {
         return (
             <TouchableOpacity
                 className="flex-row items-center px-4 py-3 active:bg-gray-50 dark:active:bg-slate-900"
-                onPress={() => setSelectedChat({ id: item.id, name: chatName })}
+                onPress={() => {
+                    router.push({
+                        pathname: "/chat/[id]",
+                        params: { id: item.id, name: chatName }
+                    });
+                }}
             >
                 <Image
                     source={

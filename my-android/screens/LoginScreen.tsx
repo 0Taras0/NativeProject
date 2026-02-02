@@ -38,7 +38,7 @@ export default function LoginScreen() {
         setModalConfig((prev) => ({ ...prev, visible: false }));
 
         if (modalConfig.type === 'success') {
-            router.replace("/main");
+            router.replace("/chats");
         }
     };
 
