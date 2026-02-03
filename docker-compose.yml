@@ -21,7 +21,7 @@ services:
       - bolt_net
 
   api:
-    image: novakvova/bolto-api:latest
+    image: 0taras0/bolto-api:latest
     container_name: bolto-api-container
     restart: unless-stopped
     volumes:

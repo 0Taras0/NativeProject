@@ -39,7 +39,6 @@ public class ChatService(
     {
         var currentUserId = await identityService.GetUserIdAsync();
 
-        // Перевіряємо, чи юзер має доступ до чату
         var isMember = await context.ChatUsers
             .AnyAsync(cu => cu.ChatId == chatId && cu.UserId == currentUserId);
 
@@ -48,9 +47,9 @@ public class ChatService(
         var messages = await context.ChatMessages
             .AsNoTracking()
             .Where(m => m.ChatId == chatId)
-            .Include(m => m.User) // Завантажуємо автора повідомлення
-            .Include(m => m.ReplyToMessage) // Завантажуємо оригінал для відповіді
-                .ThenInclude(rm => rm!.User) // Завантажуємо автора оригіналу
+            .Include(m => m.User) 
+            .Include(m => m.ReplyToMessage) 
+                .ThenInclude(rm => rm!.User) 
             .OrderBy(m => m.DateCreated)
             .ToListAsync();
 
