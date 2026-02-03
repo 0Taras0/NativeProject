@@ -1,4 +1,4 @@
-const BASE_URL = "http://192.168.0.2:5240";
+const BASE_URL = "http://192.168.0.4:5240";
 
 const  IMAGE_URL = BASE_URL + "/images";
 const  IMAGES_50_URL = IMAGE_URL + "/50_";

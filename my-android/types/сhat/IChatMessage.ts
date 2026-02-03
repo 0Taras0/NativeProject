@@ -5,4 +5,5 @@ export interface IChatMessage {
     message: string;
     createdAt: string;
     isMine: boolean;
+    currentUserId: number;
 }

@@ -39,16 +39,17 @@ export default function ChatScreen() {
     };
 
     const renderItem = ({ item }: { item: IChatMessage }) => {
+        const isActuallyMine = user?.id === item.userId;
         return (
             <View className={`my-1 mx-3 max-w-[80%] p-3 rounded-2xl ${
-                item.isMine
+                isActuallyMine
                     ? "self-end bg-blue-600 rounded-br-none"
                     : "self-start bg-gray-200 dark:bg-slate-800 rounded-bl-none"
             }`}>
-                <Text className={`${item.isMine ? "text-white" : "text-black dark:text-white"}`}>
+                <Text className={`${isActuallyMine ? "text-white" : "text-black dark:text-white"}`}>
                     {item.message}
                 </Text>
-                <Text className={`text-[10px] mt-1 text-right ${item.isMine ? "text-blue-200" : "text-gray-500"}`}>
+                <Text className={`text-[10px] mt-1 text-right ${isActuallyMine ? "text-blue-200" : "text-gray-500"}`}>
                     {new Date(item.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </Text>
             </View>
